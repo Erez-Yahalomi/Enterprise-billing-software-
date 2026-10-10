@@ -1,0 +1,16 @@
+# Build + runtime dependencies for the standalone app. Postgres/Kafka drivers are not needed
+# (SQLite + synchronous usage pipeline); google-generativeai is kept so a Gemini key still works.
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+pydantic-settings
+email-validator
+python-multipart
+python-jose
+passlib
+httpx
+pyarrow
+duckdb
+google-generativeai
+pyinstaller
