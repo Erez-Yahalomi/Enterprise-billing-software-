@@ -1,0 +1,27 @@
+# All storage is in-cluster, backed by the cluster's default StorageClass (kind: local-path on
+# the node's disk). No cloud object storage -- the Parquet usage lake is a plain volume,
+# exactly like the ./data/lake bind mount in docker-compose.
+#
+# The lake is mounted by both backend and worker. ReadWriteOnce allows that as long as both
+# pods land on the same node, which is always true on the single-node kind demo cluster.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: lake
+  namespace: billing
+spec:
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-data
+  namespace: billing
+spec:
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: 2Gi

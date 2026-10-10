@@ -1,0 +1,13 @@
+# Not applied by `kubectl apply -f kubernetes/` (it lives in a subfolder on purpose) -- it's
+# the input to `kind create cluster --config`. Maps the NodePorts below to localhost so the
+# app is reachable at the same URLs as the docker-compose demo.
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: billing
+nodes:
+  - role: control-plane
+    extraPortMappings:
+      - containerPort: 30173   # frontend NodePort
+        hostPort: 5173
+      - containerPort: 30800   # backend NodePort
+        hostPort: 8000

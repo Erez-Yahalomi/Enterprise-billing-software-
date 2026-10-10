@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: billing-config
+  namespace: billing
+data:
+  KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+  USAGE_PIPELINE: kafka
+  LAKE_PATH: /data/lake
+  OPA_URL: http://opa:8181
+  OPA_MODE: http
+  # Falls back to the built-in rule-based assistant if GEMINI_API_KEY (billing-secrets) is empty or fails.
+  AI_PROVIDER: gemini
+  ENVIRONMENT: development
+---
+# Demo-only credentials (same values as docker-compose). Replace before using anywhere real.
+apiVersion: v1
+kind: Secret
+metadata:
+  name: billing-secrets
+  namespace: billing
+type: Opaque
+stringData:
+  POSTGRES_USER: billing
+  POSTGRES_PASSWORD: billing
+  POSTGRES_DB: billing
+  DATABASE_URL: postgresql+psycopg://billing:billing@postgres:5432/billing
+  JWT_SECRET: dev-secret-change-me
+  # GEMINI_API_KEY is deliberately not listed: it's set once with scripts/set-gemini-key.ps1,
+  # and listing it here (even empty) would blank it on every `kubectl apply -f kubernetes/`.

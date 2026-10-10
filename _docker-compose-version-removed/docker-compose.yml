@@ -1,0 +1,140 @@
+﻿services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: billing
+      POSTGRES_PASSWORD: billing
+      POSTGRES_DB: billing
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U billing"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  kafka:
+    image: apache/kafka:3.8.0
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    ports:
+      - "9092:9092"
+
+  opa:
+    image: openpolicyagent/opa:0.68.0
+    command: ["run", "--server", "--addr", ":8181", "/policies"]
+    volumes:
+      - ./policies/opa:/policies
+    ports:
+      - "8181:8181"
+
+  # Local LLM runtime ג€” the "Ollama fallback" provider in backend/app/ai/providers.py.
+  # Model files land in ./data/ollama (bind mount) so they're visible inside project1/
+  # rather than hidden in a Docker-managed volume.
+  ollama:
+    image: ollama/ollama:latest
+    environment:
+      # Keep the model loaded in memory indefinitely once it's warm. Without this, Ollama
+      # unloads it after 5 minutes idle, and reloading from disk takes ~60-100s on CPU ג€”
+      # long enough to blow past any reasonable request timeout and silently fall back to
+      # the Mock provider on every chat after a short gap between questions.
+      OLLAMA_KEEP_ALIVE: "-1"
+    volumes:
+      - ./data/ollama:/root/.ollama
+    ports:
+      - "11434:11434"
+    healthcheck:
+      test: ["CMD-SHELL", "ollama list || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+      start_period: 20s
+
+  # One-shot job: pulls the model into the ollama service above, then runs one throwaway
+  # prompt against it so it's already loaded into memory (not just downloaded to disk)
+  # before the first real user question arrives. Backend doesn't wait on this ג€” it falls
+  # back to the Mock provider automatically until this finishes, so startup never blocks.
+  ollama-init:
+    image: ollama/ollama:latest
+    environment:
+      OLLAMA_HOST: "ollama:11434"
+      OLLAMA_MODEL: "${OLLAMA_MODEL:-llama3.2:1b}"
+    entrypoint: ["sh", "-c", "ollama pull \"$$OLLAMA_MODEL\" && ollama run \"$$OLLAMA_MODEL\" 'Hello'"]
+    depends_on:
+      ollama:
+        condition: service_healthy
+    restart: "no"
+
+  backend:
+    build: ./backend
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://billing:billing@postgres:5432/billing
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      USAGE_PIPELINE: kafka
+      LAKE_PATH: /data/lake
+      OPA_URL: http://opa:8181
+      OPA_MODE: http
+      AI_PROVIDER: "${AI_PROVIDER:-ollama}"
+      GEMINI_API_KEY: "${GEMINI_API_KEY:-}"
+      OLLAMA_BASE_URL: http://ollama:11434
+      OLLAMA_MODEL: "${OLLAMA_MODEL:-llama3.2:1b}"
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      kafka:
+        condition: service_started
+      opa:
+        condition: service_started
+      ollama:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+      - ./data:/data
+    command: >
+      sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+
+  worker:
+    build:
+      context: .
+      dockerfile: worker/Dockerfile
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://billing:billing@postgres:5432/billing
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      LAKE_PATH: /data/lake
+    depends_on:
+      postgres:
+        condition: service_healthy
+      kafka:
+        condition: service_started
+    volumes:
+      - ./data:/data
+
+  frontend:
+    build: ./frontend
+    environment:
+      VITE_BACKEND_URL: http://backend:8000
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+
+volumes:
+  postgres_data:
