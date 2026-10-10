@@ -1,6 +1,7 @@
 
 
-[README.md](https://github.com/user-attachments/files/33283265/README.md)
+ <img width="1920" height="880" alt="dasbo" src="https://github.com/user-attachments/assets/b34a8f15-09dc-405c-9962-5772b736ed9b" />
+
 # Corporate Billing Platform
 
 A billing software that manages customers, subscriptions, usage-based billing, invoices, payments, analytics, and an AI assistant with guardrails.
@@ -93,6 +94,7 @@ The AI Assistant use Gemini free API. On the first launch of either version a wi
 - **Kubernetes**: change it later with `.\\\\\\\\scripts\\\\\\\\set-gemini-key.ps1`.
 
 - **Executable**: edit `.env` in the data folder above, save, and restart.
+  
 
 AI Assistant screenshot:
 <img width="1920" height="878" alt="AI asis" src="https://github.com/user-attachments/assets/13db8207-4f47-4e41-90b1-02bdbeb6c328" />
