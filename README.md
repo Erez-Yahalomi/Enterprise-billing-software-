@@ -1,3 +1,5 @@
+
+
 [README.md](https://github.com/user-attachments/files/33283265/README.md)
 # Corporate Billing Platform
 
@@ -92,3 +94,5 @@ The AI Assistant use Gemini free API. On the first launch of either version a wi
 
 - **Executable**: edit `.env` in the data folder above, save, and restart.
 
+AI Assistant screenshot:
+<img width="1920" height="878" alt="AI asis" src="https://github.com/user-attachments/assets/13db8207-4f47-4e41-90b1-02bdbeb6c328" />
