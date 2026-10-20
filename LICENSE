@@ -1,21 +1,135 @@
-MIT License
+ CORPORATE BILLING PLATFORM
+PRIVATE AND DEMONSTRATION USE LICENSE
 
-Copyright (c) 2026 ארז יהלומי
+Copyright (c) 2026 Erez Yahalomi. All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+The copyright in this software, including its source code, executable
+programs, data files, documentation and artwork (the "Software"), belongs to
+Erez Yahalomi. The Software is licensed to you, not sold. All rights that are
+not expressly granted in this License are reserved.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+The Software is provided for demonstration use. Erez Yahalomi has no
+responsibility or liability of any kind for any use of the Software (see
+sections 7 and 8).
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+By installing, copying or using the Software you agree to the terms of this
+License. If you do not agree, do not install or use the Software.
+
+
+1. GRANT OF LICENSE
+
+Subject to the terms of this License, you are granted a limited,
+non-exclusive, non-transferable, revocable and royalty-free license to install
+and run the Software, and to read its source code, solely for the following
+purposes:
+
+  (a) Private use: your own personal, non-commercial use; and
+
+  (b) Demonstration use: demonstrating or evaluating the Software, including
+      showing it to other people, free of charge.
+
+
+2. SHARING FOR DEMONSTRATION
+
+You may give unmodified, complete copies of the Software (for example the
+Setup file) to other people, free of charge, so that they can try it for
+private or demonstration use. You must keep this License and all copyright
+notices with every copy. Everyone who receives a copy is bound by this License.
+
+
+3. RESTRICTIONS
+
+Without the written permission of Erez Yahalomi you may NOT:
+
+  (a) use the Software for any commercial, business, production or
+      revenue-generating purpose, including billing or invoicing real
+      customers;
+
+  (b) sell, rent, lease, sublicense or charge for the Software or any copy of
+      it, or include it in any product or service that you offer to others;
+
+  (c) modify, adapt, translate or create derivative works of the Software,
+      except for your own private use that you do not share with anyone;
+
+  (d) reverse engineer, decompile or disassemble the compiled Software, except
+      to the extent that applicable law expressly allows this despite this
+      restriction;
+
+  (e) remove or alter any copyright or license notice in the Software; or
+
+  (f) use the name of Erez Yahalomi or the name of the Software to endorse or
+      promote any product or service, or in a way that suggests an
+      endorsement.
+
+
+4. COPYRIGHT
+
+The copyright and all other intellectual property rights in the Software
+belong to Erez Yahalomi. No right or license is granted by implication,
+estoppel or otherwise, except as expressly stated in this License.
+
+
+5. THIRD-PARTY COMPONENTS
+
+The Software includes third-party open-source components. They are licensed to
+you under their own license terms, which this License does not change. This
+License applies only to the original work of Erez Yahalomi. Where the authors
+of those components supply license texts, those texts are included with the
+Software.
+
+
+6. DEMONSTRATION DATA
+
+The sample customers, products, invoices, payments and other records included
+with the Software are fictitious and were generated for demonstration only.
+Any resemblance to real persons or organizations is coincidental.
+
+
+7. DEMONSTRATION USE AND NO WARRANTY
+
+THE SOFTWARE IS PROVIDED FOR DEMONSTRATION USE ONLY, "AS IS", WITHOUT WARRANTY
+OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IT MUST
+NOT BE RELIED ON FOR REAL BILLING, ACCOUNTING, TAX OR OTHER FINANCIAL OR LEGAL
+PURPOSES.
+
+
+8. NO RESPONSIBILITY OR LIABILITY
+
+YOU USE THE SOFTWARE ENTIRELY AT YOUR OWN RISK. TO THE MAXIMUM EXTENT PERMITTED
+BY LAW, EREZ YAHALOMI HAS NO RESPONSIBILITY OR LIABILITY OF ANY KIND FOR ANY
+USE OF THE SOFTWARE, FOR ANY RESULT OF USING IT OR NOT BEING ABLE TO USE IT, OR
+FOR ANY CLAIM, DAMAGES OR LOSS ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE, INCLUDING ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL OR CONSEQUENTIAL
+DAMAGES OR LOSS OF DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE.
+
+
+9. TERMINATION
+
+This License remains in effect until it is terminated. It terminates
+automatically, without notice, if you breach any of its terms. When it
+terminates you must stop using the Software and delete all copies of it.
+Sections 3, 4, 5, 7, 8, 9, 10 and 11 survive termination.
+
+
+10. GOVERNING LAW AND JURISDICTION
+
+This License is governed by the laws of the State of Israel, without regard to
+its conflict-of-laws rules. The competent courts of Israel have exclusive
+jurisdiction over any dispute arising out of or in connection with this
+License or the Software.
+
+
+11. GENERAL
+
+This License is the entire agreement between you and Erez Yahalomi about the
+Software. If any provision is held to be unenforceable, the remaining
+provisions stay in effect. A right is waived only by a written statement
+signed by Erez Yahalomi.
+
+
+12. PERMISSIONS AND CONTACT
+
+For any use that this License does not allow, including commercial licensing,
+please contact Erez Yahalomi through the project's GitHub page.
