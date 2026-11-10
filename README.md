@@ -41,7 +41,6 @@ A billing software that manages customers, subscriptions, usage-based billing, i
 | - | - | - |
 | Needs | Docker Desktop, kind, kubectl | Nothing |
 | Database | PostgreSQL | SQLite |
-| Opens at | http://localhost:5173 | http://127.0.0.1:8765 |
 | Best for | Seeing the full architecture | Quick use, sharing with others |
 
 
@@ -81,11 +80,15 @@ Resumes the existing cluster and opens the app. Your data and settings are kept.
 
 Pauses the app and keeps your data. Add `-RemoveData` to delete the cluster and start fresh.
 
-## Option 2: Executable (no Docker)
+## Option 2: Executable (no Docker) Fastest
 
 **Run**
 
-Double-click `BillingPlatform-Standalone\\\\\\\\dist\\\\\\\\BillingPlatform\\\\\\\\BillingPlatform.exe` (or `Start-BillingPlatform.bat`). A small window opens, then your browser opens the app. Keep the window open while you use it; close it to stop.
+Double-click `on Releases 1 Enterprise billing software
+or go to the link.
+
+https://github.com/Erez-Yahalomi/Enterprise-billing-software-/releases/tag/v1.0.1
+   
 
 ## Optional: Gemini AI key (free)
 
@@ -98,5 +101,7 @@ The AI Assistant use Gemini free API. On the first launch of either version a wi
 
 AI Assistant screenshot:
 <img width="1920" height="878" alt="AI asis" src="https://github.com/user-attachments/assets/13db8207-4f47-4e41-90b1-02bdbeb6c328" />
+
+ 
 
 Created by Erez Yahalomi ארז-יהלומי
