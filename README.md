@@ -84,8 +84,9 @@ Pauses the app and keeps your data. Add `-RemoveData` to delete the cluster and 
 
 **Run**
 
-Double-click `on Releases 1 Enterprise billing software
-or go to the link.
+Double-click `on Releases 1 Enterprise billing software,
+
+or go to the link
 
 https://github.com/Erez-Yahalomi/Enterprise-billing-software-/releases/tag/v1.0.1
    
